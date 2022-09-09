@@ -21,12 +21,6 @@ Object.defineProperty(exports, "DateRangePicker", {
     return _DateRangePicker.default;
   }
 });
-Object.defineProperty(exports, "DefinedRange", {
-  enumerable: true,
-  get: function get() {
-    return _DefinedRange.default;
-  }
-});
 Object.defineProperty(exports, "defaultInputRanges", {
   enumerable: true,
   get: function get() {
@@ -46,13 +40,13 @@ Object.defineProperty(exports, "createStaticRanges", {
   }
 });
 
+require("./index.css");
+
 var _DateRange = _interopRequireDefault(require("./components/DateRange"));
 
 var _Calendar = _interopRequireDefault(require("./components/Calendar"));
 
 var _DateRangePicker = _interopRequireDefault(require("./components/DateRangePicker"));
-
-var _DefinedRange = _interopRequireDefault(require("./components/DefinedRange"));
 
 var _defaultRanges = require("./defaultRanges");
 

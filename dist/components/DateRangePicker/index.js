@@ -13,8 +13,6 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _DateRange = _interopRequireDefault(require("../DateRange"));
 
-var _DefinedRange = _interopRequireDefault(require("../DefinedRange"));
-
 var _utils = require("../../utils");
 
 var _classnames = _interopRequireDefault(require("classnames"));
@@ -81,15 +79,7 @@ var DateRangePicker = /*#__PURE__*/function (_Component) {
       var focusedRange = this.state.focusedRange;
       return /*#__PURE__*/_react.default.createElement("div", {
         className: (0, _classnames.default)(this.styles.dateRangePickerWrapper, this.props.className)
-      }, /*#__PURE__*/_react.default.createElement(_DefinedRange.default, _extends({
-        focusedRange: focusedRange,
-        onPreviewChange: function onPreviewChange(value) {
-          return _this2.dateRange.updatePreview(value ? _this2.dateRange.calcNewSelection(value, typeof value === 'string') : null);
-        }
-      }, this.props, {
-        range: this.props.ranges[focusedRange[0]],
-        className: undefined
-      })), /*#__PURE__*/_react.default.createElement(_DateRange.default, _extends({
+      }, /*#__PURE__*/_react.default.createElement(_DateRange.default, _extends({
         onRangeFocusChange: function onRangeFocusChange(focusedRange) {
           return _this2.setState({
             focusedRange: focusedRange
@@ -109,7 +99,7 @@ var DateRangePicker = /*#__PURE__*/function (_Component) {
 }(_react.Component);
 
 DateRangePicker.defaultProps = {};
-DateRangePicker.propTypes = _objectSpread(_objectSpread(_objectSpread({}, _DateRange.default.propTypes), _DefinedRange.default.propTypes), {}, {
+DateRangePicker.propTypes = _objectSpread(_objectSpread({}, _DateRange.default.propTypes), {}, {
   className: _propTypes.default.string
 });
 var _default = DateRangePicker;

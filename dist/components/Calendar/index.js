@@ -67,6 +67,12 @@ var _styles = _interopRequireDefault(require("../../styles"));
 
 var _accessibility = require("../../accessibility");
 
+var _dayjs = _interopRequireDefault(require("dayjs"));
+
+var _arrowLeft = _interopRequireDefault(require("../../assets/arrow-left.svg"));
+
+var _arrowRight = _interopRequireDefault(require("../../assets/arrow-right.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -130,6 +136,8 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
       var preventUnnecessary = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
       if (!props.scroll.enabled) {
+        if (preventUnnecessary) return;
+
         if (preventUnnecessary && props.preventSnapRefocus) {
           var focusedDateDiff = (0, _differenceInCalendarMonths.default)(date, _this.state.focusedDate);
           var isAllowedForward = props.calendarFocus === 'forwards' && focusedDateDiff >= 0;
@@ -271,67 +279,73 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "renderMonthAndYear", function (focusedDate, changeShownDate, props) {
-      var showMonthArrow = props.showMonthArrow,
-          minDate = props.minDate,
-          maxDate = props.maxDate,
-          showMonthAndYearPickers = props.showMonthAndYearPickers,
-          ariaLabels = props.ariaLabels;
-      var upperYearLimit = (maxDate || Calendar.defaultProps.maxDate).getFullYear();
-      var lowerYearLimit = (minDate || Calendar.defaultProps.minDate).getFullYear();
       var styles = _this.styles;
+      var startMonth = '';
+      var endMonth = '';
+      new Array(_this.props.months).fill(null).map(function (_, i) {
+        var monthStep = (0, _addMonths.default)(_this.state.focusedDate, i);
+
+        if (_this.props.calendarFocus === 'backwards') {
+          monthStep = (0, _subMonths.default)(_this.state.focusedDate, _this.props.months - 1 - i);
+        }
+
+        if (i === 0) {
+          startMonth = monthStep;
+        }
+
+        if (i === _this.props.months - 1) {
+          endMonth = monthStep;
+        }
+      });
       return /*#__PURE__*/_react.default.createElement("div", {
         onMouseUp: function onMouseUp(e) {
           return e.stopPropagation();
         },
-        className: styles.monthAndYearWrapper
-      }, showMonthArrow ? /*#__PURE__*/_react.default.createElement("button", {
-        type: "button",
-        className: (0, _classnames3.default)(styles.nextPrevButton, styles.prevButton),
+        className: styles.monthAndYearWrapper,
+        style: {
+          marginBottom: 16
+        }
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center"
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "w-10 h-10 bg-gray-3 rounded-[4px] flex items-center justify-center cursor-pointer",
         onClick: function onClick() {
           return changeShownDate(-1, 'monthOffset');
-        },
-        "aria-label": ariaLabels.prevButton
-      }, /*#__PURE__*/_react.default.createElement("i", null)) : null, showMonthAndYearPickers ? /*#__PURE__*/_react.default.createElement("span", {
-        className: styles.monthAndYearPickers
-      }, /*#__PURE__*/_react.default.createElement("span", {
-        className: styles.monthPicker
-      }, /*#__PURE__*/_react.default.createElement("select", {
-        value: focusedDate.getMonth(),
-        onChange: function onChange(e) {
-          return changeShownDate(e.target.value, 'setMonth');
-        },
-        "aria-label": ariaLabels.monthPicker
-      }, _this.state.monthNames.map(function (monthName, i) {
-        return /*#__PURE__*/_react.default.createElement("option", {
-          key: i,
-          value: i
-        }, monthName);
-      }))), /*#__PURE__*/_react.default.createElement("span", {
-        className: styles.monthAndYearDivider
-      }), /*#__PURE__*/_react.default.createElement("span", {
-        className: styles.yearPicker
-      }, /*#__PURE__*/_react.default.createElement("select", {
-        value: focusedDate.getFullYear(),
-        onChange: function onChange(e) {
-          return changeShownDate(e.target.value, 'setYear');
-        },
-        "aria-label": ariaLabels.yearPicker
-      }, new Array(upperYearLimit - lowerYearLimit + 1).fill(upperYearLimit).map(function (val, i) {
-        var year = val - i;
-        return /*#__PURE__*/_react.default.createElement("option", {
-          key: year,
-          value: year
-        }, year);
-      })))) : /*#__PURE__*/_react.default.createElement("span", {
-        className: styles.monthAndYearPickers
-      }, _this.state.monthNames[focusedDate.getMonth()], " ", focusedDate.getFullYear()), showMonthArrow ? /*#__PURE__*/_react.default.createElement("button", {
-        type: "button",
-        className: (0, _classnames3.default)(styles.nextPrevButton, styles.nextButton),
+        }
+      }, /*#__PURE__*/_react.default.createElement("img", {
+        src: _arrowLeft.default
+      })), /*#__PURE__*/_react.default.createElement("div", {
+        className: "rounded-[4px] bg-[#F9F7FC] px-4 py-1",
+        style: {
+          marginLeft: 16
+        }
+      }, /*#__PURE__*/_react.default.createElement("p", {
+        className: "leading-7 text-[#834BFF] font-semibold text-[16px] "
+      }, (0, _dayjs.default)(startMonth).format('MMMM'))), /*#__PURE__*/_react.default.createElement("div", {
+        className: "rounded-[4px] bg-[#F9F7FC] px-4 py-1 ml-2"
+      }, /*#__PURE__*/_react.default.createElement("p", {
+        className: "leading-7 text-[#834BFF] font-semibold text-[16px] "
+      }, (0, _dayjs.default)(startMonth).format('YYYY')))), /*#__PURE__*/_react.default.createElement("div", {
+        className: "flex items-center"
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "rounded-[4px] bg-[#F9F7FC] px-4 py-1"
+      }, /*#__PURE__*/_react.default.createElement("p", {
+        className: "leading-7 text-[#834BFF] font-semibold text-[16px] "
+      }, (0, _dayjs.default)(endMonth).format('MMMM'))), /*#__PURE__*/_react.default.createElement("div", {
+        className: "rounded-[4px] bg-[#F9F7FC] px-4 py-1 ml-2 mr-6",
+        style: {
+          marginRight: 16
+        }
+      }, /*#__PURE__*/_react.default.createElement("p", {
+        className: "leading-7 text-[#834BFF] font-semibold text-[16px] "
+      }, (0, _dayjs.default)(startMonth).format('YYYY'))), /*#__PURE__*/_react.default.createElement("div", {
+        className: "w-10 h-10 bg-gray-3 rounded-[4px] flex items-center justify-center cursor-pointer",
         onClick: function onClick() {
           return changeShownDate(+1, 'monthOffset');
-        },
-        "aria-label": ariaLabels.nextButton
-      }, /*#__PURE__*/_react.default.createElement("i", null)) : null);
+        }
+      }, /*#__PURE__*/_react.default.createElement("img", {
+        src: _arrowRight.default
+      }))));
     });
 
     _defineProperty(_assertThisInitialized(_this), "renderDateDisplay", function () {
@@ -704,7 +718,6 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
         className: (0, _classnames3.default)(this.styles.months, isVertical ? this.styles.monthsVertical : this.styles.monthsHorizontal)
       }, new Array(this.props.months).fill(null).map(function (_, i) {
         var monthStep = (0, _addMonths.default)(_this5.state.focusedDate, i);
-        ;
 
         if (_this5.props.calendarFocus === 'backwards') {
           monthStep = (0, _subMonths.default)(_this5.state.focusedDate, _this5.props.months - 1 - i);
@@ -715,6 +728,7 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
           preview: preview || _this5.state.preview,
           ranges: ranges,
           key: i,
+          index: i,
           drag: _this5.state.drag,
           dateOptions: _this5.dateOptions,
           disabledDates: disabledDates,

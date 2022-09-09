@@ -232,7 +232,12 @@ var DayCell = /*#__PURE__*/function (_Component) {
           key: i,
           className: (0, _classnames4.default)((_classnames3 = {}, _defineProperty(_classnames3, styles.startEdge, range.isStartEdge), _defineProperty(_classnames3, styles.endEdge, range.isEndEdge), _defineProperty(_classnames3, styles.inRange, range.isInRange), _classnames3)),
           style: {
-            color: range.color || _this.props.color
+            color: range.color || _this.props.color,
+            borderRadius: 4,
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0
           }
         });
       });
@@ -250,10 +255,10 @@ var DayCell = /*#__PURE__*/function (_Component) {
     value: function render() {
       var dayContentRenderer = this.props.dayContentRenderer;
       return /*#__PURE__*/_react.default.createElement("button", _extends({
-        type: "button",
-        onMouseEnter: this.handleMouseEvent,
-        onMouseLeave: this.handleMouseEvent,
-        onFocus: this.handleMouseEvent,
+        type: "button" // onMouseEnter={this.handleMouseEvent}
+        // onMouseLeave={this.handleMouseEvent}
+        // onFocus={this.handleMouseEvent}
+        ,
         onMouseDown: this.handleMouseEvent,
         onMouseUp: this.handleMouseEvent,
         onBlur: this.handleMouseEvent,
@@ -265,10 +270,21 @@ var DayCell = /*#__PURE__*/function (_Component) {
         tabIndex: -1
       } : {}, {
         style: {
-          color: this.props.color
+          color: this.props.color,
+          width: 43,
+          height: 43,
+          margin: 2
         }
       }), this.renderSelectionPlaceholders(), this.renderPreviewPlaceholder(), /*#__PURE__*/_react.default.createElement("span", {
-        className: this.props.styles.dayNumber
+        className: this.props.styles.dayNumber,
+        style: {
+          top: '0px',
+          left: '0px',
+          right: '0px',
+          bottom: '0px',
+          borderRadius: 4,
+          background: '#FAFAFA'
+        }
       }, (dayContentRenderer === null || dayContentRenderer === void 0 ? void 0 : dayContentRenderer(this.props.day)) || /*#__PURE__*/_react.default.createElement("span", null, (0, _format.default)(this.props.day, this.props.dayDisplayFormat))));
     }
   }]);

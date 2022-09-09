@@ -74,7 +74,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function renderWeekdays(styles, dateOptions, weekdayDisplayFormat) {
   var now = new Date();
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: styles.weekDays
+    className: styles.weekDays,
+    style: {
+      width: 330
+    }
   }, (0, _eachDayOfInterval.default)({
     start: (0, _startOfWeek.default)(now, dateOptions),
     end: (0, _endOfWeek.default)(now, dateOptions)
@@ -82,7 +85,7 @@ function renderWeekdays(styles, dateOptions, weekdayDisplayFormat) {
     return /*#__PURE__*/_react.default.createElement("span", {
       className: styles.weekDay,
       key: i
-    }, (0, _format.default)(day, weekdayDisplayFormat, dateOptions));
+    }, (0, _format.default)(day, 'EEEEEE', dateOptions));
   }));
 }
 
@@ -129,14 +132,15 @@ var Month = /*#__PURE__*/function (_PureComponent) {
       }
 
       var showPreview = this.props.showPreview && !drag.disablePreview;
-      return /*#__PURE__*/_react.default.createElement("div", {
+      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
         className: styles.month,
         style: this.props.style
-      }, this.props.showMonthName ? /*#__PURE__*/_react.default.createElement("div", {
-        className: styles.monthName
-      }, (0, _format.default)(this.props.month, this.props.monthDisplayFormat, this.props.dateOptions)) : null, this.props.showWeekDays && renderWeekdays(styles, this.props.dateOptions, this.props.weekdayDisplayFormat), /*#__PURE__*/_react.default.createElement("div", {
+      }, this.props.showWeekDays && renderWeekdays(styles, this.props.dateOptions, this.props.weekdayDisplayFormat), /*#__PURE__*/_react.default.createElement("div", {
         className: styles.days,
-        onMouseLeave: this.props.onMouseLeave
+        onMouseLeave: this.props.onMouseLeave,
+        style: {
+          width: 330
+        }
       }, (0, _eachDayOfInterval.default)({
         start: monthDisplay.start,
         end: monthDisplay.end
@@ -171,7 +175,14 @@ var Month = /*#__PURE__*/function (_PureComponent) {
           dragRange: drag.range,
           drag: drag.status
         }));
-      })));
+      }))), this.props.index === 0 && /*#__PURE__*/_react.default.createElement("div", {
+        style: {
+          width: 0.5,
+          background: '#E6E7E7',
+          margin: '10px 10px 0px 28px',
+          height: '90%'
+        }
+      }));
     }
   }]);
 
