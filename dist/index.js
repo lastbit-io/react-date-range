@@ -40,8 +40,6 @@ Object.defineProperty(exports, "createStaticRanges", {
   }
 });
 
-require("./index.css");
-
 var _DateRange = _interopRequireDefault(require("./components/DateRange"));
 
 var _Calendar = _interopRequireDefault(require("./components/Calendar"));

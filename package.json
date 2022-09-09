@@ -39,6 +39,7 @@
   ],
   "dependencies": {
     "classnames": "^2.2.6",
+    "dayjs": "^1.11.5",
     "prop-types": "^15.7.2",
     "react-list": "^0.8.13",
     "shallow-equal": "^1.2.1"
