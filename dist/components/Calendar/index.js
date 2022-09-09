@@ -69,9 +69,9 @@ var _accessibility = require("../../accessibility");
 
 var _dayjs = _interopRequireDefault(require("dayjs"));
 
-var _arrowLeft = _interopRequireDefault(require("../../assets/arrow-left.svg"));
+var _left = _interopRequireDefault(require("../../assets/left.png"));
 
-var _arrowRight = _interopRequireDefault(require("../../assets/arrow-right.svg"));
+var _right = _interopRequireDefault(require("../../assets/right.png"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -313,7 +313,9 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
           return changeShownDate(-1, 'monthOffset');
         }
       }, /*#__PURE__*/_react.default.createElement("img", {
-        src: _arrowLeft.default
+        src: _left.default,
+        width: 16,
+        height: 16
       })), /*#__PURE__*/_react.default.createElement("div", {
         className: "rounded-[4px] bg-[#F9F7FC] px-4 py-1",
         style: {
@@ -344,7 +346,9 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
           return changeShownDate(+1, 'monthOffset');
         }
       }, /*#__PURE__*/_react.default.createElement("img", {
-        src: _arrowRight.default
+        src: _right.default,
+        width: 16,
+        height: 16
       }))));
     });
 

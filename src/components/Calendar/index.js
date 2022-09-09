@@ -31,8 +31,8 @@ import defaultLocale from 'date-fns/locale/en-US';
 import coreStyles from '../../styles';
 import { ariaLabelsShape } from '../../accessibility';
 import dayjs from 'dayjs';
-import ArrowLeft from '../../assets/arrow-left.svg';
-import ArrowRight from '../../assets/arrow-right.svg';
+import ArrowLeft from '../../assets/left.png';
+import ArrowRight from '../../assets/right.png';
 
 class Calendar extends PureComponent {
   constructor(props, context) {
@@ -213,7 +213,7 @@ class Calendar extends PureComponent {
             className="w-10 h-10 bg-gray-3 rounded-[4px] flex items-center justify-center cursor-pointer"
             onClick={() => changeShownDate(-1, 'monthOffset')}
           >
-            <img src={ArrowLeft} />
+            <img src={ArrowLeft} width={16} height={16} />
           </div>
           <div className="rounded-[4px] bg-[#F9F7FC] px-4 py-1" style={{ marginLeft: 16 }}>
             <p className="leading-7 text-[#834BFF] font-semibold text-[16px] ">
@@ -242,7 +242,7 @@ class Calendar extends PureComponent {
             className="w-10 h-10 bg-gray-3 rounded-[4px] flex items-center justify-center cursor-pointer"
             onClick={() => changeShownDate(+1, 'monthOffset')}
           >
-            <img src={ArrowRight} />
+            <img src={ArrowRight} width={16} height={16} />
           </div>
         </div>
       </div>
