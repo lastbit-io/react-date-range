@@ -13,20 +13,20 @@ import {
   isAfter,
   isWeekend,
   isWithinInterval,
-  eachDayOfInterval,
+  eachDayOfInterval
 } from 'date-fns';
 import { getMonthDisplayRange } from '../../utils';
 
 function renderWeekdays(styles, dateOptions, weekdayDisplayFormat) {
   const now = new Date();
   return (
-    <div className={styles.weekDays}>
+    <div className={styles.weekDays} style={{ width: 330 }}>
       {eachDayOfInterval({
         start: startOfWeek(now, dateOptions),
-        end: endOfWeek(now, dateOptions),
+        end: endOfWeek(now, dateOptions)
       }).map((day, i) => (
         <span className={styles.weekDay} key={i}>
-          {format(day, weekdayDisplayFormat, dateOptions)}
+          {format(day, 'EEEEEE', dateOptions)}
         </span>
       ))}
     </div>
@@ -52,30 +52,23 @@ class Month extends PureComponent {
         return {
           ...range,
           startDate,
-          endDate,
+          endDate
         };
       });
     }
     const showPreview = this.props.showPreview && !drag.disablePreview;
     return (
-      <div className={styles.month} style={this.props.style}>
-        {this.props.showMonthName ? (
-          <div className={styles.monthName}>
-            {format(this.props.month, this.props.monthDisplayFormat, this.props.dateOptions)}
-          </div>
-        ) : null}
-        {this.props.showWeekDays &&
-          renderWeekdays(styles, this.props.dateOptions, this.props.weekdayDisplayFormat)}
-        <div className={styles.days} onMouseLeave={this.props.onMouseLeave}>
-          {eachDayOfInterval({ start: monthDisplay.start, end: monthDisplay.end }).map(
-            (day, index) => {
+      <>
+        <div className={styles.month} style={this.props.style}>
+          {this.props.showWeekDays &&
+            renderWeekdays(styles, this.props.dateOptions, this.props.weekdayDisplayFormat)}
+          <div className={styles.days} onMouseLeave={this.props.onMouseLeave} style={{ width: 330 }}>
+            {eachDayOfInterval({ start: monthDisplay.start, end: monthDisplay.end }).map((day, index) => {
               const isStartOfMonth = isSameDay(day, monthDisplay.startDateOfMonth);
               const isEndOfMonth = isSameDay(day, monthDisplay.endDateOfMonth);
               const isOutsideMinMax =
                 (minDate && isBefore(day, minDate)) || (maxDate && isAfter(day, maxDate));
-              const isDisabledSpecifically = disabledDates.some(disabledDate =>
-                isSameDay(disabledDate, day)
-              );
+              const isDisabledSpecifically = disabledDates.some(disabledDate => isSameDay(disabledDate, day));
               const isDisabledDay = disabledDay(day);
               return (
                 <DayCell
@@ -94,7 +87,7 @@ class Month extends PureComponent {
                   isPassive={
                     !isWithinInterval(day, {
                       start: monthDisplay.startDateOfMonth,
-                      end: monthDisplay.endDateOfMonth,
+                      end: monthDisplay.endDateOfMonth
                     })
                   }
                   styles={styles}
@@ -105,10 +98,20 @@ class Month extends PureComponent {
                   drag={drag.status}
                 />
               );
-            }
-          )}
+            })}
+          </div>
         </div>
-      </div>
+        {this.props.index === 0 && (
+          <div
+            style={{
+              width: 0.5,
+              background: '#E6E7E7',
+              margin: '10px 10px 0px 28px',
+              height: '90%'
+            }}
+          />
+        )}
+      </>
     );
   }
 }
@@ -125,7 +128,7 @@ Month.propTypes = {
   disabledDay: PropTypes.func,
   preview: PropTypes.shape({
     startDate: PropTypes.object,
-    endDate: PropTypes.object,
+    endDate: PropTypes.object
   }),
   showPreview: PropTypes.bool,
   displayMode: PropTypes.oneOf(['dateRange', 'date']),
@@ -142,7 +145,7 @@ Month.propTypes = {
   dayDisplayFormat: PropTypes.string,
   showWeekDays: PropTypes.bool,
   showMonthName: PropTypes.bool,
-  fixedHeight: PropTypes.bool,
+  fixedHeight: PropTypes.bool
 };
 
 export default Month;
