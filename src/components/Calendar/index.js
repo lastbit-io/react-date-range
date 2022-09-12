@@ -218,7 +218,7 @@ class Calendar extends PureComponent {
             />
           </div>
           <div className="rounded-[4px] bg-[#F9F7FC] px-4 py-1" style={{ marginLeft: 16 }}>
-            <p className="leading-7 text-[#834BFF] font-semibold text-[16px] ">
+            <p className="leading-7 text-[#834BFF] font-semibold text-[16px]">
               {dayjs(startMonth).format('MMMM')}
             </p>
           </div>

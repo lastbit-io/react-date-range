@@ -119,11 +119,11 @@
   .rdrWeekDays {
     padding: 0;
   }
-}  
+}
 
 .rdrMonths.rdrMonthsVertical .rdrMonth:first-child .rdrMonthName{
   display: none;
-}  
+}
 
 .rdrWeekDay {
   font-weight: 400;
@@ -187,7 +187,7 @@
   .rdrInRange, .rdrStartEdge, .rdrEndEdge, .rdrSelected{
       & ~ .rdrDayNumber{
         span{
-          color: rgba(255, 255, 255, 0.85);
+          color: #FFFFFF;
         }
       }
   }

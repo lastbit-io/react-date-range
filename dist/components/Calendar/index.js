@@ -318,7 +318,7 @@ var Calendar = /*#__PURE__*/function (_PureComponent) {
           marginLeft: 16
         }
       }, /*#__PURE__*/_react.default.createElement("p", {
-        className: "leading-7 text-[#834BFF] font-semibold text-[16px] "
+        className: "leading-7 text-[#834BFF] font-semibold text-[16px]"
       }, (0, _dayjs.default)(startMonth).format('MMMM'))), /*#__PURE__*/_react.default.createElement("div", {
         className: "rounded-[4px] bg-[#F9F7FC] px-4 py-1 ml-2"
       }, /*#__PURE__*/_react.default.createElement("p", {

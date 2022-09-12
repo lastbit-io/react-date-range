@@ -147,7 +147,8 @@
 }
 
 .rdrDayNumber span {
-  color: #1d2429;
+  color: #575E63;
+  font-weight: 500;
 }
 
 .rdrDayDisabled {
@@ -400,14 +401,14 @@
 .rdrDayToday:not(.rdrDayPassive) .rdrStartEdge ~ .rdrDayNumber span:after,
 .rdrDayToday:not(.rdrDayPassive) .rdrEndEdge ~ .rdrDayNumber span:after,
 .rdrDayToday:not(.rdrDayPassive) .rdrSelected ~ .rdrDayNumber span:after {
-  background: #fff;
+  background: #FFFFFF;
 }
 
 .rdrDay:not(.rdrDayPassive) .rdrInRange ~ .rdrDayNumber span,
 .rdrDay:not(.rdrDayPassive) .rdrStartEdge ~ .rdrDayNumber span,
 .rdrDay:not(.rdrDayPassive) .rdrEndEdge ~ .rdrDayNumber span,
 .rdrDay:not(.rdrDayPassive) .rdrSelected ~ .rdrDayNumber span {
-  color: rgba(255, 255, 255, 0.85);
+  color: #FFFFFF;
 }
 
 .rdrSelected,
